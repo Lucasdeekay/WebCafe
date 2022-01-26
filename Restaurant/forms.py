@@ -89,8 +89,9 @@ class FoodForm(forms.Form):
 
 
 class OrderForm(forms.Form):
-    ticket_id = forms.IntegerField(
-        widget=forms.NumberInput(
+    ticket_id = forms.CharField(
+        max_length=10,
+        widget=forms.TextInput(
             attrs={
                 'required': '',
                 'class': 'input',
@@ -141,8 +142,9 @@ class OrderForm(forms.Form):
 
 
 class ValidateTicketForm(forms.Form):
-    ticket_id = forms.IntegerField(
-        widget=forms.NumberInput(
+    ticket_id = forms.CharField(
+        max_length=10,
+        widget=forms.TextInput(
             attrs={
                 'required': '',
                 'class': 'input',

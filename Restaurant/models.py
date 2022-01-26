@@ -22,7 +22,7 @@ class Food(models.Model):
 
 
 class Ticket(models.Model):
-    serial_no = models.IntegerField()
+    serial_no = models.CharField(max_length=12)
     date = models.DateTimeField(null=False, blank=False)
     is_valid = models.BooleanField(default=True)
 
