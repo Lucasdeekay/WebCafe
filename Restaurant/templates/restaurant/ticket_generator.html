@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Ticket Generator</title>
+{% endblock %}
+
+{% block header %}
+<div class="px-3 py-2 border-bottom mb-3">
+    <div class="container d-flex flex-wrap justify-content-center">
+        <div class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+            <h3 class="fw-bold">TICKET GENERATOR</h3>
+        </div>
+
+        <div class="text-end">
+          <a href="{% url 'Cafeteria:logout' %}" type="button" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% for message in messages %}
+{% if message.tags == "success" %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
+            <article class="message is-success">
+                <div class="message-header">
+                    <p>Success</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    <em>{{ message }}</em>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
+            <article class="message is-danger">
+                <div class="message-header">
+                    <p>Error</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    <em>{{ message }}</em>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="px-4 py-5 my-5 pb-6 mb-6 text-center">
+    <div class="col-lg-6 mx-auto">
+      <p class="display-6 fw-bold mb-3">Tickets are automatically generated for our workers on a daily basis through the click of a button.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="{% url 'Cafeteria:create_tickets' %}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Generate Tickets</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

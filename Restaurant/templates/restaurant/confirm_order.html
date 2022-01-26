@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Confirm Order</title>
+{% endblock %}
+
+{% block header %}
+<div class="px-3 py-2 border-bottom mb-3">
+    <div class="container d-flex flex-wrap justify-content-center">
+        <div class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+            <h3 class="fw-bold">CONFIRM ORDER</h3>
+        </div>
+
+        <div class="text-end">
+            <a href="{% url 'Cafeteria:logout' %}" type="button" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% for message in messages %}
+{% if message.tags == "success" %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
+            <article class="message is-success">
+                <div class="message-header">
+                    <p>Success</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    <em>{{ message }}</em>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
+            <article class="message is-danger">
+                <div class="message-header">
+                    <p>Error</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    <em>{{ message }}</em>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="container pt-6">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-5 col-lg-8 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary fw-bold">Your Order</span>
+                <span class="badge bg-primary rounded-pill"></span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 fw-bold">Student Name</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">{{ current_order.student.full_name }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 fw-bold">Student Id</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">{{ current_order.student.student_id }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 fw-bold">Meal</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">{{ current_order.food.name }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 fw-bold">Ticket Id</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">{{ current_order.ticket.serial_no }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 fw-bold">Quantity</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">{{ current_order.quantity }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 fw-bold">Date</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">{{ current_order.date }}</span>
+                </li>
+            </ul>
+
+            <div class="card p-2">
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div class="input-group">
+                    <a href="{% url 'Cafeteria:accept_order' current_order.id%}" type="button" class="btn btn-success">Accept</a>
+                </div>
+                    <span class="text-muted"><a href="{% url 'Cafeteria:decline_order' current_order.id%}" type="button" class="btn btn-danger">Decline</a></span>
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

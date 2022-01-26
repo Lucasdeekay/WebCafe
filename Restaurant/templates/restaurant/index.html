@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+{% block header %}
+<div class="px-3 py-2 border-bottom mb-3">
+    <div class="container d-flex flex-wrap justify-content-center">
+        <div class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+            <h3 class="fw-bold">LOGIN</h3>
+            <small class="fw-bold">User Login</small>
+        </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% for message in messages %}
+{% if message.tags == "success" %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
+            <article class="message is-success">
+                <div class="message-header">
+                    <p>Success</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    <em>{{ message }}</em>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
+            <article class="message is-danger">
+                <div class="message-header">
+                    <p>Error</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    <em>{{ message }}</em>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="container pt-6">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="account__form" style="border:0">
+                    {% include 'restaurant/django_form.html' with form=form %}
+                    <div>
+                        <button class="button is-fullwidth is-rounded is-info label" type="submit">Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
