@@ -74,7 +74,7 @@
               <td>{{ forloop.counter }}</td>
               <td>{{ ticket.student.full_name }}</td>
               <td>{{ ticket.student.student_id }}</td>
-                {% for i in ticket.tickets.all %}
+                {% for i in ticket.ticket.all %}
               <td>{{ i }}</td>
               {% endfor %}
             </tr>
