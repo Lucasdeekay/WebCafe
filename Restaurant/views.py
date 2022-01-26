@@ -210,8 +210,8 @@ def create_tickets(request):
 
 
 def display_tickets(request):
+    all_tickets = StudentTicket.objects.all()
     if request.user.is_authenticated and not request.user.is_superuser:
-        all_tickets = StudentTicket.objects.all()
         return render(request, 'restaurant/tickets.html', {'all_tickets': all_tickets})
     else:
         messages.error(request, "Kindly login please")
