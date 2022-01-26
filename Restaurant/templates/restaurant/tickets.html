@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Tickets For The Day</title>
+{% endblock %}
+
+
+{% block header %}
+<div class="px-3 py-2 border-bottom mb-3">
+    <div class="container d-flex flex-wrap justify-content-center">
+        <div class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+            <h3 class="fw-bold">TICKETS FOR THE DAY</h3>
+        </div>
+
+        <div class="text-end">
+          <a href="{% url 'Cafeteria:logout' %}" type="button" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% for message in messages %}
+{% if message.tags == "success" %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
+            <article class="message is-success">
+                <div class="message-header">
+                    <p>Success</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    <em>{{ message }}</em>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6">
+            <article class="message is-danger">
+                <div class="message-header">
+                    <p>Error</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    <em>{{ message }}</em>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Student Id</th>
+              <th scope="col">Ticket 1</th>
+              <th scope="col">Ticket 2</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for ticket in all_tickets %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ ticket.student.full_name }}</td>
+              <td>{{ ticket.student.student_id }}</td>
+                {% for i in ticket.ticket %}
+              <td>{{ i.serial_no }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+{% endblock %}

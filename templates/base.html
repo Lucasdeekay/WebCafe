@@ -89,9 +89,17 @@
                                     <li>
                                         <a href="{% url 'Cafeteria:home' %}" class="nav-link text-white">
                                             <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                                <use xlink:href="#people-circle"></use>
+                                                <use xlink:href="#table"></use>
                                             </svg>
                                             Order
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'Cafeteria:display_tickets' %}" class="nav-link text-white">
+                                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                                <use xlink:href="#grid"></use>
+                                            </svg>
+                                            Tickets
                                         </a>
                                     </li>
                                 </ul>
@@ -120,6 +128,7 @@
       <li class="nav-item"><a href="{% url 'Cafeteria:ticket_generator' %}" class="nav-link px-2 text-muted">Generate Ticket</a></li>
       <li class="nav-item"><a href="{% url 'Cafeteria:meal_menu' %}" class="nav-link px-2 text-muted">Meal Menu</a></li>
       <li class="nav-item"><a href="{% url 'Cafeteria:home' %}" class="nav-link px-2 text-muted">Order</a></li>
+        <li class="nav-item"><a href="{% url 'Cafeteria:display_tickets' %}" class="nav-link px-2 text-muted">Ticket</a></li>
     </ul>
   </footer>
 </div>

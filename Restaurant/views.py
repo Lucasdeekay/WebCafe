@@ -209,6 +209,15 @@ def create_tickets(request):
     return HttpResponseRedirect(reverse('Cafeteria:home'))
 
 
+def display_tickets(request):
+    all_tickets = StudentTicket.objects.all()
+    if request.user.is_authenticated and not request.user.is_superuser:
+        return render(request, 'restaurant/tickets.html', {'all_tickets': all_tickets})
+    else:
+        messages.error(request, "Kindly login please")
+        return HttpResponseRedirect(reverse('Cafeteria:home'))
+
+
 def log_out(request):
     logout(request)
     return HttpResponseRedirect(reverse('Cafeteria:home'))
