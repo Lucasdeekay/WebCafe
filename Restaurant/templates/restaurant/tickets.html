@@ -64,8 +64,7 @@
               <th scope="col">#</th>
               <th scope="col">Student Name</th>
               <th scope="col">Student Id</th>
-              <th scope="col">Ticket 1</th>
-              <th scope="col">Ticket 2</th>
+              <th scope="col">Ticket</th>
             </tr>
           </thead>
           <tbody>
@@ -74,9 +73,7 @@
               <td>{{ forloop.counter }}</td>
               <td>{{ ticket.student.full_name }}</td>
               <td>{{ ticket.student.student_id }}</td>
-                {% for i in ticket.ticket %}
-              <td>{{ i.serial_no }}</td>
-              {% endfor %}
+              <td>{{ ticket.ticket }}</td>
             </tr>
           {% endfor %}
           </tbody>
