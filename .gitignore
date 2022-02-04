@@ -9,7 +9,6 @@ Web_Cafe/.env
 # Backup files #
 *.bak
 
-
 # If you are using PyCharm #
 .idea/**
 .idea/**/workspace.xml
